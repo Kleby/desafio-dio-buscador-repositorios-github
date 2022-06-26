@@ -1,39 +1,63 @@
 import React from 'react';
+import useGithub from '../../hooks/github-hooks';
 import * as S from './styled';
 
 export default function Profile() {
+  const {githubState} = useGithub();
   return (
     <S.Wrapper>
         <S.WarpperAvatarImg  
-            src="https://avatars.githubusercontent.com/u/63982483?v=4"
+            src={githubState.user.avatar_url}
             alt="perfil of user" 
         />
       <S.WarpperInfoUser>
         <div> 
-          <h1>Kleby Veiga</h1> 
-          <S.WrapperUserName>
+          <h1>{githubState.user.name}</h1> 
+          <S.WrapperUserGeneric>
             <h3>Username: </h3>
             <a 
-              href='https://github.com/Kleby' 
+              href={githubState.user.html_url}
               target="_blank"
               rel='noreferrer'
             >
-              Kleby
+              {githubState.user.login}
             </a>
-          </S.WrapperUserName>
+          </S.WrapperUserGeneric>
+          <S.WrapperUserGeneric>
+            <h3>Company:  </h3>
+            <span>{githubState.user.company}</span>
+          </S.WrapperUserGeneric>
+          <S.WrapperUserGeneric>
+            <h3>Location:  </h3>
+            <span>{githubState.user.location}</span>
+          </S.WrapperUserGeneric>
+          <S.WrapperUserGeneric>
+            <h3>Blog: </h3>
+            <a 
+              href={githubState.user.blog}
+              target="_blank"
+              rel='noreferrer'
+            >
+              {githubState.user.blog}
+            </a>
+          </S.WrapperUserGeneric>
         </div>    
         <S.WrapperStatusCoount>
           <div>
             <h4>Followers</h4>
-            <span>2</span>
-          </div>
-          <div>
-            <h4>Starred</h4>
-            <span>2</span>
+            <span>{githubState.user.followers}</span>
           </div>
           <div>
             <h4>Followings</h4>
-            <span>3</span>
+            <span>{githubState.user.following}</span>
+          </div>
+          <div>
+            <h4>Gists</h4>
+            <span>{githubState.user.public_gists}</span>
+          </div>
+          <div>
+            <h4>Repos</h4>
+            <span>{githubState.user.public_repos}</span>
           </div>
         </S.WrapperStatusCoount>
       </S.WarpperInfoUser>

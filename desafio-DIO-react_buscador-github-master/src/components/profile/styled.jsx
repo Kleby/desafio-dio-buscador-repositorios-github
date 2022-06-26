@@ -14,7 +14,7 @@ export const WrapperStatusCoount = styled.div `
     }
 `;
 
-export const WrapperUserName = styled.div `
+export const WrapperUserGeneric = styled.div `
     display: flex;
     align-items: center;
     margin-top: .5em;
@@ -55,6 +55,7 @@ export const WarpperInfoUser = styled.div `
 export const WarpperAvatarImg = styled.img `
     border-radius: 50%;
     width: 10em;
-    border: 2px solid #000;
+    height: 10em;
+    background-color: #888;
     margin: .5em;
 `;

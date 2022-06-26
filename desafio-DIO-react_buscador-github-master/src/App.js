@@ -1,17 +1,27 @@
 import Layout from "./components/layout";
+import NoSearch from "./components/no-search";
 import Profile from "./components/profile/Profile";
 import Repositories from "./components/repositories/index";
-import { ResetCSS } from "./global/resetCSS";
+import useGithub from "./hooks/github-hooks";
 
 function App() {
+  const {githubState} = useGithub();
   return (
-    <main>
-      <ResetCSS />
-      <Layout> 
-        <Profile />
-        <Repositories />
-      </Layout>
-    </main>
+    <Layout> 
+      {githubState.hasUser ?
+          <>
+          {githubState.loading ? (
+          <p>Loading</p> ): (
+          <>
+            <Profile />
+            <Repositories />
+          </>)}
+         </>
+         :
+         <NoSearch />
+      }
+  
+  </Layout>
   );
 }
 
